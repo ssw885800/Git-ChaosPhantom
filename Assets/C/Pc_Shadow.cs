@@ -29,6 +29,7 @@ public class Pc_Shadow : MonoBehaviour
     public int MaxHp;
     public int MaxEnergy;
 
+    public GameObject dashObj;//衝刺殘影物件
     public Animator animator;
 
     float MoveDir;
@@ -177,10 +178,11 @@ public class Pc_Shadow : MonoBehaviour
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("player"), LayerMask.NameToLayer("Enemy"), false);
                 isDash = false;
                 canHurt = true;
+                dashObj.SetActive(false);
             }
             else
             {
-                shadowRig.AddForce(transform.right * DashSpeed * Time.deltaTime);   //衝刺速度
+                shadowRig.velocity = transform.right * DashSpeed;//衝刺速度
             }
         }
     }
