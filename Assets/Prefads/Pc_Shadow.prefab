@@ -206,11 +206,10 @@ MonoBehaviour:
   shadowRig: {fileID: 3958435541927611328}
   HpText: {fileID: 0}
   MoveSpeed: 10
-  SquMoveSpeed: 3
-  jumpHigh: 17.5
+  jumpHigh: 15
   MaxJumpTime: 0.3
-  DashSpeed: 6520
-  DashTime: 0.5
+  DashSpeed: 60
+  DashTime: 0.2
   DashCD: 0.8
   AttackCD: 0
   ReHpTime: 3

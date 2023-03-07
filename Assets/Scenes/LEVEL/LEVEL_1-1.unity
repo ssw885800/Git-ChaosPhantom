@@ -1105,26 +1105,6 @@ PrefabInstance:
       propertyPath: HpText
       value: 
       objectReference: {fileID: 1452245591}
-    - target: {fileID: 1088957031, guid: ead86e12bd7e9874e967b99a09c84c97, type: 3}
-      propertyPath: DashTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1088957031, guid: ead86e12bd7e9874e967b99a09c84c97, type: 3}
-      propertyPath: jumpHigh
-      value: 17.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1088957031, guid: ead86e12bd7e9874e967b99a09c84c97, type: 3}
-      propertyPath: DashSpeed
-      value: 6520
-      objectReference: {fileID: 0}
-    - target: {fileID: 1088957031, guid: ead86e12bd7e9874e967b99a09c84c97, type: 3}
-      propertyPath: MoveSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1088957031, guid: ead86e12bd7e9874e967b99a09c84c97, type: 3}
-      propertyPath: MaxJumpTime
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 3958435541927611329, guid: ead86e12bd7e9874e967b99a09c84c97, type: 3}
       propertyPath: m_Name
       value: Pc_Shadow

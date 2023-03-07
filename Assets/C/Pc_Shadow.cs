@@ -16,34 +16,39 @@ public class Pc_Shadow : MonoBehaviour
     public Rigidbody2D shadowRig;
     public Text HpText;
 
+    [Header("移動參數")]
     public float MoveSpeed;
-    public float SquMoveSpeed;
     public float jumpHigh;
     public float MaxJumpTime;
     public float DashSpeed;
     public float DashTime;
     public float DashCD;
-    public float AttackCD;
-    public float ReHpTime;
-    public float EnergyRemainTime;
-    public int MaxHp;
-    public int MaxEnergy;
-
-    public Animator animator;
-
     float MoveDir;
     float jumpTime;
     float Fall = 0;
     float DashTimeRemain;
     float DashRemain;
+
+    [Header("攻擊參數")]
+    public float AttackCD;
+    float StartAttack = 0.11f;
+    float AttackTime = 0.19f;
     float AttackRemain;
+    
+
+    [Header("玩家的HP、Energy")]
+    public float ReHpTime;
+    public float EnergyRemainTime;
+    public int MaxHp;
+    public int MaxEnergy;
     float EnergyRemain;
     float ReHp;
 
-    float StartAttack = 0.11f;
-    float AttackTime = 0.19f;
+    [Header("動畫控制器")]
+    public Animator animator;
 
-    bool SquCheck = false;
+
+    
     bool groundCheck = false;
     bool JumpKeep= false;
     bool JumpCheck = false;
@@ -72,9 +77,11 @@ public class Pc_Shadow : MonoBehaviour
         GroundCheck();
         EnergyRecovery();
         HpRecovery();
+        AnimationSwich();
+        JumpToFall();
+        FallingFunction();
         if (!isHurt)
         {
-            SquSwich();
             Jump();
             Dash();
             Attack();
@@ -85,35 +92,19 @@ public class Pc_Shadow : MonoBehaviour
     {
         if (!isHurt && !isDash && !Attacking) Move();
         Flip();
-        JumpToFall();
-        FallingFunction();
         HurtSwich();
-        AnimationSwich();
     }
     void Move()     //移動
     {
         MoveDir = Input.GetAxis("Horizontal");  //取得左右移動按鍵
-        if (!SquCheck) shadowRig.velocity = new Vector2(MoveDir * MoveSpeed, shadowRig.velocity.y);      //一般移速
-        if (SquCheck) shadowRig.velocity = new Vector2(MoveDir * SquMoveSpeed, shadowRig.velocity.y);   //蹲下移速
+        shadowRig.velocity = new Vector2(MoveDir * MoveSpeed, shadowRig.velocity.y);      //一般移速
+        
     }
-    void SquSwich()  //蹲下
-    {
-
-        if (Input.GetKey(KeyCode.S) && groundCheck)   //當按下S鍵
-        {
-            SquCheck = true;
-            ShadowHit.enabled = false;    //關閉剛體
-        }
-        if (Input.GetKeyUp(KeyCode.S))                        //當放開S鍵
-        {
-            SquCheck = false;
-            ShadowHit.enabled = true;     //開啟剛體
-        }
-    }
+    
     void Jump()     //跳躍
     {
         Vector2 jumpVel = new Vector2(0.0f, jumpHigh);   //跳躍前置轉換
-        if (Input.GetKeyDown(KeyCode.Space) && groundCheck && !SquCheck)
+        if (Input.GetKeyDown(KeyCode.Space) && groundCheck)
         {
             JumpCheck = true;
             JumpKeep = true;
@@ -180,10 +171,11 @@ public class Pc_Shadow : MonoBehaviour
             }
             else
             {
-                shadowRig.AddForce(transform.right * DashSpeed * Time.deltaTime);   //衝刺速度
+                shadowRig.velocity = transform.right * DashSpeed;
             }
         }
     }
+    
     void OnCollisionStay2D(Collision2D collision)                                       // 碰撞
     {
         if (canHurt && collision.gameObject.tag == "Enemy") gameManager.NowHp -= 1;             //扣血
@@ -225,7 +217,7 @@ public class Pc_Shadow : MonoBehaviour
         if (MoveDir != 0 && !JumpCheck && groundCheck && !isDash && !Attacking) animator.Play("Pc_Move");                  //移動動畫
         if (MoveDir == 0 && !JumpCheck && groundCheck && !isDash && !Attacking) animator.Play("Pc_Idle");                  //待機動畫
         if (JumpCheck && !isDash && !Attacking) animator.Play("Pc_JumpUpMove");                                            //往上跳躍動畫
-        if (JumpToFallCheck && !isDash && !groundCheck && !JumpCheck && !Attacking) animator.Play("Pc_JumpDownMove");      //跳躍掉落動畫
+        if (JumpToFallCheck && !groundCheck && !JumpCheck && !Attacking) animator.Play("Pc_JumpDownMove");      //跳躍掉落動畫
         if (isDash && DashTimeRemain >0.15f) animator.Play("Pc_Dash");                                                      //衝刺動畫
         if (Attacking) animator.Play("Pc_Attack");
     }
