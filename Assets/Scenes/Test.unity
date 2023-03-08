@@ -547,14 +547,6 @@ PrefabInstance:
       propertyPath: HpText
       value: 
       objectReference: {fileID: 1246484895}
-    - target: {fileID: 1203509466, guid: ead86e12bd7e9874e967b99a09c84c97, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1203509468, guid: ead86e12bd7e9874e967b99a09c84c97, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3958435541927611329, guid: ead86e12bd7e9874e967b99a09c84c97, type: 3}
       propertyPath: m_Name
       value: Pc_Shadow
