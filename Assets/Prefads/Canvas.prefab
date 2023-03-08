@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 7631075291336715547}
   - component: {fileID: 7631075291336715556}
   m_Layer: 5
-  m_Name: Text
+  m_Name: HP/Energy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

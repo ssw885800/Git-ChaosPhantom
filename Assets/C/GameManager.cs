@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public int NowHp;
     public int NowEnergy;
 
+    [Header("死亡面板")]
+    public GameObject DeathCavas;
+
     void Awake()
     {
         if(instance == null)
@@ -24,6 +27,7 @@ public class GameManager : MonoBehaviour
     {
         NowEnergy = 5;
         NowHp = 5;
+        DeathCavas.SetActive(false);//遊戲開始時關閉死亡面板
     }
 
 
@@ -33,10 +37,24 @@ public class GameManager : MonoBehaviour
         {
             Application.Quit();
         }
+        if(NowHp<=0)//當HP歸零時觸發死亡介面
+        {
+            Death();
+        }
     }
     public void StartButtom()
     {
         SceneManager.LoadScene("HUD", LoadSceneMode.Additive);
+    }
+    void Death () //死亡面板
+    {
+        Time.timeScale = 0;
+        DeathCavas.SetActive(true);
+    }
+    public void Reset()
+    {
+        Debug.Log("重來");
+        
     }
 }
 
