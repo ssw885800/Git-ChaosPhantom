@@ -208,8 +208,8 @@ MonoBehaviour:
   MoveSpeed: 10
   jumpHigh: 15
   MaxJumpTime: 0.3
-  DashSpeed: 60
-  DashTime: 0.2
+  DashSpeed: 37
+  DashTime: 0.3
   DashCD: 0.8
   AttackCD: 0
   ReHpTime: 3
